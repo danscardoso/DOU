@@ -1,0 +1,510 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"arti",
+				"article_id\t(artigos Col)"
+			],
+			[
+				"regexp",
+				"regexp_replace(string, pattern, replacement)"
+			],
+			[
+				"ARTI",
+				"article_id\t(artigos Col)"
+			],
+			[
+				"cam",
+				"caminho_relativo"
+			],
+			[
+				"unz",
+				"unzipped_file_dir"
+			],
+			[
+				"or",
+				"orgao_sup\t(uorgs_siape Col)"
+			],
+			[
+				"SIAP",
+				"SIAPE_UORG_ORIGINAL"
+			],
+			[
+				"cod",
+				"cod_hierarquico\t(siorg_planej Col)"
+			],
+			[
+				"co",
+				"codigo_hierarquico\t(siorg Col)"
+			],
+			[
+				"sior",
+				"SIORG_PLANEJ"
+			],
+			[
+				"orgao",
+				"orgao_sup\t(uorgs_siape Col)"
+			],
+			[
+				"uor",
+				"uorgs_siape\t(public Table)"
+			],
+			[
+				"nom",
+				"nome_base_seccionada"
+			],
+			[
+				"o",
+				"orgao"
+			],
+			[
+				"pa",
+				"paragrafo"
+			],
+			[
+				"pala",
+				"palavras"
+			],
+			[
+				"verb",
+				"verbo_encontrado"
+			],
+			[
+				"para",
+				"paragrafo"
+			],
+			[
+				"tex",
+				"texto_trabalhado"
+			],
+			[
+				"linh",
+				"linha_temp"
+			],
+			[
+				"lin",
+				"line_temp"
+			],
+			[
+				"nome_",
+				"nome_fim"
+			],
+			[
+				"ci",
+				"contadorRegistros"
+			],
+			[
+				"conta",
+				"contadorRegistros"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"table",
+				"ST: Table Description"
+			],
+			[
+				"select",
+				"ST: Select Connection"
+			],
+			[
+				"histo",
+				"ST: History"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"ssxml",
+				"Set Syntax: XML"
+			],
+			[
+				"ident",
+				"Indentation: Reindent Lines"
+			],
+			[
+				"uni",
+				"Permute Lines: Unique"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"upper",
+				"Convert Case: Upper Case"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"tab",
+				"ST: Table Description"
+			],
+			[
+				"SSSQL",
+				"Set Syntax: SQL"
+			],
+			[
+				"TABLE",
+				"ST: Table Description"
+			],
+			[
+				"ss",
+				"Set Syntax: SQL"
+			],
+			[
+				"sssql",
+				"Set Syntax: SQL"
+			],
+			[
+				"selec",
+				"ST: Select Connection"
+			],
+			[
+				"sele",
+				"ST: Select Connection"
+			],
+			[
+				"connec",
+				"ST: Select Connection"
+			],
+			[
+				"select con",
+				"ST: Select Connection"
+			],
+			[
+				"connections",
+				"ST: Setup Connections"
+			],
+			[
+				"conne",
+				"ST: Select Connection"
+			],
+			[
+				"isnta",
+				"Install Package Control"
+			],
+			[
+				"UPPER",
+				"Convert Case: Upper Case"
+			],
+			[
+				"uniqu",
+				"Permute Lines: Unique"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"sotr",
+				"Sort Lines"
+			],
+			[
+				"instal",
+				"Install Package Control"
+			],
+			[
+				"uniq",
+				"Permute Lines: Unique"
+			],
+			[
+				"sssh",
+				"Set Syntax: Bourne Again Shell (bash)"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			],
+			[
+				"inst",
+				"Install Package Control"
+			],
+			[
+				"ins",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 396.0,
+		"history":
+		[
+			"clc",
+			"clear",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/pedro.palotti/Downloads/DOU",
+		"/C/Users/pedro.palotti/Downloads/DOU/Outputs",
+		"/C/Users/pedro.palotti/Downloads/DOU/Outputs/Hist",
+		"/C/Users/pedro.palotti/Downloads/DOU/SQL",
+		"/C/Users/pedro.palotti/Downloads/DOU/unzip"
+	],
+	"file_history":
+	[
+		"/C/Users/pedro.palotti/Downloads/DOU/SQL/various.sql",
+		"/C/Users/pedro.palotti/Downloads/DOU/Scripts/XML2csv.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/SQL/tabelas.sql",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/GENERATE_CREATE_TABLES.sh",
+		"/C/Users/pedro.palotti/Downloads/DOU/Scripts/Scripts.7z",
+		"/C/Users/pedro.palotti/Downloads/DOU/Scripts/01_prepara_ambiente.sh",
+		"/C/Users/pedro.palotti/Downloads/DOU/Scripts/empacotador.sh",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/barba2postgres.sh",
+		"/C/Users/pedro.palotti/Downloads/DOU/temp/output.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/insertPostgres.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/Scripts/tabelas.sql",
+		"/C/Users/pedro.palotti/Downloads/DOU/DOU_crawl_single_XML.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/Scripts/banco_relacional.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/DTD.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/banco_relacional.txt",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/02_01_2018/10454242.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/DOU_proj.sublime-workspace",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/edicaoContagem.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/edicao.py",
+		"/C/Users/pedro.palotti/Downloads/UORGS/SIAPE/a.sql",
+		"/C/Users/pedro.palotti/Downloads/UORGS/SIAPE/uorgs_do_siape.txt",
+		"/C/Users/pedro.palotti/Downloads/UORGS/Dan/siorg.sql",
+		"/C/Users/pedro.palotti/Downloads/UORGS/Dan/Siglas_Orgs_SIAPE.txt",
+		"/C/Users/pedro.palotti/Downloads/UORGS/a.out",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/fase14.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/pares_unicos.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/BASE_SIAPE/v3.0/INFOGOV_05_BASE_UORG.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/faseFinal.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/COD_HIERARQUICO.TXT",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/fase2.py",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/fase1.py",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/pais.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/filhos.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/fase14.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/a.out",
+		"/C/Users/pedro.palotti/Downloads/UORGS/UORG/fase1.py",
+		"/C/Users/pedro.palotti/Downloads/UORGS/INFOGOV_05_BASE_UORG.txt",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/02_03_2018/10545916.xml",
+		"/C/Users/pedro.palotti/Downloads/UORGS/SIORG/DEMANDA_20180618.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/A.txt",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/History/geratabelas.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/Barba2Postgres.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/History/p1.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/output.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_contagem.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_base_seccionada.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_nome_base_seccionada.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_base_contagem.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_nome_base_editada.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/BaseSeccionada.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/p2.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/p1.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/DOU_crawl_decretoPessoal.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/02_03_2018/10621981.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/empacotador.sh",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/02_01_2018.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/duploVerbo.txt",
+		"/C/Users/pedro.palotti/Downloads/DOU/empacotador.sh",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/empacotados/02_12_2017.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/empacotados/02_02_2018.xml",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/COMPARTILHADOS/isnome.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/A.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/COMPARTILHADOS/DOU_crawl_single_XML.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/pedacoOutput.txt",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Barba2Postgres.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/p2.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/p1.py",
+		"/C/Users/pedro.palotti/Downloads/DOU_crawl_single_XML.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/cab.txt",
+		"/C/Users/pedro.palotti/Downloads/DOU/DOU_v0.4_comments.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10646056.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10646056 (2).xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10642709.xml",
+		"/C/Users/pedro.palotti/Downloads/uorg_recode.R",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10594043.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10597346.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10597502.xml"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			".*\\| ",
+			"<p>",
+			"<[a-z]+ (class=[a-z]+)>",
+			"decretos de ",
+			"resolve:?<\\/p><p>[a-z]+",
+			"resolve[^<]",
+			"resolve[^<].*",
+			"resolve.*",
+			"\\\\t",
+			"\\+",
+			"\\W+",
+			"\\t",
+			"[ ]+",
+			"\\w+",
+			",",
+			"insert into",
+			" ",
+			",",
+			"python",
+			"[ \\-]+LIVE",
+			" vendor.*",
+			"linha"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 39.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SQLTools Result":
+	{
+		"height": 239.0
+	},
+	"output.SublimeLinter":
+	{
+		"height": 126.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "DOU.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\pedro.palotti\\Downloads\\03_Barba2Postgres\\barba2postgres.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 274.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

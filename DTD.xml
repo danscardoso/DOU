@@ -1,0 +1,27 @@
+<!ELEMENT xml (article) >
+	<!ELEMENT article (body) >
+		<!ELEMENT body (Identifica, Data, Ementa, Titulo, SubTitulo, Texto, Autores) >
+			<!ELEMENT Identifica ANY >
+			<!ELEMENT Data ANY >
+			<!ELEMENT Ementa ANY >
+			<!ELEMENT Titulo ANY >
+			<!ELEMENT SubTitulo ANY >
+			<!ELEMENT Texto ANY >
+			<!ELEMENT Autores ( assina*, cargo*, assina*, cargo* ) >
+				<!ELEMENT assina ANY >
+				<!ELEMENT cargo ANY >
+
+<!ATTLIST article id CDATA #REQUIRED >
+<!ATTLIST article name CDATA #REQUIRED >
+<!ATTLIST article idOficio CDATA #REQUIRED >
+<!ATTLIST article pubName CDATA #REQUIRED >
+<!ATTLIST article artType CDATA #REQUIRED >
+<!ATTLIST article pubDate CDATA #REQUIRED >
+<!ATTLIST article artClass CDATA #REQUIRED >
+<!ATTLIST article artSection CDATA #REQUIRED >
+<!ATTLIST article artCategory CDATA #REQUIRED >
+<!ATTLIST article artSize CDATA #REQUIRED >
+<!ATTLIST article artNotes CDATA #REQUIRED >
+<!ATTLIST article numberPage CDATA #REQUIRED >
+<!ATTLIST article pdfPage CDATA #REQUIRED >
+<!ATTLIST article editionNumber CDATA #REQUIRED >

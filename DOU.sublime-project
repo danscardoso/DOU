@@ -1,0 +1,586 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"unz",
+				"unzipped_file_dir"
+			],
+			[
+				"or",
+				"orgao_sup\t(uorgs_siape Col)"
+			],
+			[
+				"SIAP",
+				"SIAPE_UORG_ORIGINAL"
+			],
+			[
+				"cod",
+				"cod_hierarquico\t(siorg_planej Col)"
+			],
+			[
+				"co",
+				"codigo_hierarquico\t(siorg Col)"
+			],
+			[
+				"sior",
+				"SIORG_PLANEJ"
+			],
+			[
+				"orgao",
+				"orgao_sup\t(uorgs_siape Col)"
+			],
+			[
+				"uor",
+				"uorgs_siape\t(public Table)"
+			],
+			[
+				"nom",
+				"nome_base_seccionada"
+			],
+			[
+				"o",
+				"orgao"
+			],
+			[
+				"pa",
+				"paragrafo"
+			],
+			[
+				"pala",
+				"palavras"
+			],
+			[
+				"verb",
+				"verbo_encontrado"
+			],
+			[
+				"para",
+				"paragrafo"
+			],
+			[
+				"tex",
+				"texto_trabalhado"
+			],
+			[
+				"linh",
+				"linha_temp"
+			],
+			[
+				"lin",
+				"line_temp"
+			],
+			[
+				"nome_",
+				"nome_fim"
+			],
+			[
+				"ci",
+				"contadorRegistros"
+			],
+			[
+				"conta",
+				"contadorRegistros"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "# 1 - PREPARAÇÃO DE TODO O AMBIENTE\n# \t* REQUISITO UMA PASTA FONTE COM ARQUIVOS ZIPADOS\n#\t* REQUISITO UM NOME PARA UMA PASTA PARA GUARDAR OS ARQUIVOS UNZIPADOS\n\n# exemplo:\n# ./01_prepara_ambiente.sh ../dados_originais ../dados_unzip\n#\n\necho \"COMECEI A PREPARAR O AMBIENTE\" $(date +\"%T\")\n\nsource_file_dir=$1\nunzipped_file_dir=$2\n\n#Faz uma pasta para conter os arquivos unzipados\nmkdir -p \"$unzipped_file_dir\"\n\n#unzipa tudo na pasta dados_originais\nIFS=$'\\n'\nfor file in $(find \"$source_file_dir\" -name \"*zip\"); do\n\n\t#pasta eh o arquivo zip sem o caminho relativo e sem o .zip\n\tfolder=$(echo $file | grep -E -o '[^/]*$' | sed 's/\\.zip//' )\n\n\t#unzipa lah\n\tunzip -q \"$file\" -d \"$unzipped_file_dir\"\"/\"\"$folder\"\ndone\n\necho \"TERMINEI DE PREPARAR O AMBIENTE\" $(date +\"%T\")",
+			"file": "Scripts/01_prepara_ambiente.sh",
+			"file_size": 766,
+			"file_write_time": 131826402874874373,
+			"settings":
+			{
+				"buffer_size": 764,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Scripts/empacotador.sh",
+			"settings":
+			{
+				"buffer_size": 1019,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "Outputs/empacotado.csv",
+			"settings":
+			{
+				"buffer_size": 168649248,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			],
+			[
+				"tab",
+				"ST: Table Description"
+			],
+			[
+				"SSSQL",
+				"Set Syntax: SQL"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"TABLE",
+				"ST: Table Description"
+			],
+			[
+				"ss",
+				"Set Syntax: SQL"
+			],
+			[
+				"sssql",
+				"Set Syntax: SQL"
+			],
+			[
+				"table",
+				"ST: Table Description"
+			],
+			[
+				"selec",
+				"ST: Select Connection"
+			],
+			[
+				"sele",
+				"ST: Select Connection"
+			],
+			[
+				"connec",
+				"ST: Select Connection"
+			],
+			[
+				"select con",
+				"ST: Select Connection"
+			],
+			[
+				"connections",
+				"ST: Setup Connections"
+			],
+			[
+				"conne",
+				"ST: Select Connection"
+			],
+			[
+				"isnta",
+				"Install Package Control"
+			],
+			[
+				"UPPER",
+				"Convert Case: Upper Case"
+			],
+			[
+				"uniqu",
+				"Permute Lines: Unique"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"uni",
+				"Permute Lines: Unique"
+			],
+			[
+				"ssxml",
+				"Set Syntax: XML"
+			],
+			[
+				"sotr",
+				"Sort Lines"
+			],
+			[
+				"instal",
+				"Install Package Control"
+			],
+			[
+				"uniq",
+				"Permute Lines: Unique"
+			],
+			[
+				"sssh",
+				"Set Syntax: Bourne Again Shell (bash)"
+			],
+			[
+				"packa",
+				"Preferences: Browse Packages"
+			],
+			[
+				"inst",
+				"Install Package Control"
+			],
+			[
+				"ins",
+				"Install Package Control"
+			]
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 396.0,
+		"history":
+		[
+			"clc",
+			"clear",
+			"import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe013ee18cced0ef93d5f746d80ef60'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/barba2postgres.sh",
+		"/C/Users/pedro.palotti/Downloads/DOU/Scripts/empacotador.sh",
+		"/C/Users/pedro.palotti/Downloads/DOU/temp/output.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/insertPostgres.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/Scripts/tabelas.sql",
+		"/C/Users/pedro.palotti/Downloads/DOU/DOU_crawl_single_XML.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/Scripts/banco_relacional.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/DTD.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/banco_relacional.txt",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/02_01_2018/10454242.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/DOU_proj.sublime-workspace",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/edicaoContagem.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/edicao.py",
+		"/C/Users/pedro.palotti/Downloads/UORGS/SIAPE/a.sql",
+		"/C/Users/pedro.palotti/Downloads/UORGS/SIAPE/uorgs_do_siape.txt",
+		"/C/Users/pedro.palotti/Downloads/UORGS/Dan/siorg.sql",
+		"/C/Users/pedro.palotti/Downloads/UORGS/Dan/Siglas_Orgs_SIAPE.txt",
+		"/C/Users/pedro.palotti/Downloads/UORGS/a.out",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/fase14.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/pares_unicos.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/BASE_SIAPE/v3.0/INFOGOV_05_BASE_UORG.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/faseFinal.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/COD_HIERARQUICO.TXT",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/fase2.py",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/fase1.py",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/pais.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/filhos.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/UORG/fase14.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/a.out",
+		"/C/Users/pedro.palotti/Downloads/UORGS/UORG/fase1.py",
+		"/C/Users/pedro.palotti/Downloads/UORGS/INFOGOV_05_BASE_UORG.txt",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/02_03_2018/10545916.xml",
+		"/C/Users/pedro.palotti/Downloads/UORGS/SIORG/DEMANDA_20180618.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/A.txt",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/History/geratabelas.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/Barba2Postgres.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/History/p1.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/output.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_contagem.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_base_seccionada.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_nome_base_seccionada.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_base_contagem.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/__temp_nome_base_editada.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/BaseSeccionada.csv",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/p2.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Scripts/p1.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/DOU_crawl_decretoPessoal.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/02_03_2018/10621981.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/empacotador.sh",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/02_01_2018.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/duploVerbo.txt",
+		"/C/Users/pedro.palotti/Downloads/DOU/empacotador.sh",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/empacotados/02_12_2017.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/dados_unzip/empacotados/02_02_2018.xml",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/COMPARTILHADOS/isnome.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/A.txt",
+		"//cgdad20617dw10/Users/flavio.vitoria/Documents/FSV/COMPARTILHADOS/DOU_crawl_single_XML.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/pedacoOutput.txt",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/Barba2Postgres.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/p2.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/p1.py",
+		"/C/Users/pedro.palotti/Downloads/DOU_crawl_single_XML.py",
+		"/C/Users/pedro.palotti/Downloads/03_Barba2Postgres/cab.txt",
+		"/C/Users/pedro.palotti/Downloads/DOU/DOU_v0.4_comments.py",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10646056.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10646056 (2).xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10642709.xml",
+		"/C/Users/pedro.palotti/Downloads/uorg_recode.R",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10594043.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10597346.xml",
+		"/C/Users/pedro.palotti/Downloads/DOU/S02042018/10597502.xml"
+	],
+	"find":
+	{
+		"height": 40.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"\\\\t",
+			"\\+",
+			"\\W+",
+			"\\t",
+			"[ ]+",
+			"\\w+",
+			",",
+			"insert into",
+			" ",
+			",",
+			"python",
+			"[ \\-]+LIVE",
+			" vendor.*",
+			"linha"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "."
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 2,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "Scripts/01_prepara_ambiente.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 764,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								764,
+								764
+							]
+						],
+						"settings":
+						{
+							"SL.52.region_keys":
+							[
+							],
+							"auto_name": "",
+							"syntax": "Packages/ShellScript/Bash.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "Scripts/empacotador.sh",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1019,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1019,
+								1019
+							]
+						],
+						"settings":
+						{
+							"SL.54.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/ShellScript/Bash.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "Outputs/empacotado.csv",
+					"semi_transient": true,
+					"settings":
+					{
+						"buffer_size": 168649248,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"SL.53.region_keys":
+							[
+							],
+							"git_gutter_is_enabled": false,
+							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.SQLTools Result":
+	{
+		"height": 363.0
+	},
+	"output.SublimeLinter":
+	{
+		"height": 0.0
+	},
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "proj_DOU.sublime-workspace",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 212.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
