@@ -7,28 +7,35 @@ import xml.etree.ElementTree as ET #library to read xml in python, structure-com
 nome_arquivo = argv[1];
 
 class Artigo:
-    id='null'
-    artType='null'          #ato
-    pubDate='null'          #data
+    
+    #Atributos do artigo
     artCategory='null'      #orgao
-    name='null'
-    idOficio='null'
-    pubName='null'
     artClass='null'
+    artNotes='null'
     artSection='null'
     artSize='null'
-    artNotes='null'
+    artType='null'          #ato
+    editionNumber='null'
+    id='null'
+    idOficio='null'
+    idMateria='null'
+    highlight='null'
+    highlightPriority='null'
+    highlightType='null'
+    name='null'
     numberPage='null'
     pdfPage='null'
-    editionNumber='null'
-    Identifica='null'
+    pubDate='null'          #data
+    pubName='null'
+    
+    #Tags filhas do artigo
+    Autores='null'
     Data='null'
     Ementa='null'
-    Titulo='null'
+    Identifica='null'
     SubTitulo='null'
     Texto='null'
-
-print ("id\tato\tdata\torgao\tname\tidOficio\tpubName\tartClass\tartSection\tartSize\tartNotes\tnumberPage\tpdfPage\teditionNumber\tIdentifica\tData\tEmenta\tTitulo\tSubtitulo\tTexto")
+    Titulo='null'
 
 #root is XML tag
 tree = ET.parse(nome_arquivo)
@@ -36,6 +43,14 @@ root = tree.getroot()           #xml tag
 
 local_artigo = Artigo()
 listaAttributos = [a for a in dir(local_artigo) if not a.startswith('__') and not callable(getattr(local_artigo,a))]
+
+# Fazendo o cabecalho
+outputString=''
+for atributo in listaAttributos:
+    outputString += atributo + "\t"
+
+#Imprimindo o cabecalho
+print outputString[:-1]
 
 #para cada artigo no DOU
 for article in root:
@@ -45,15 +60,24 @@ for article in root:
 
     #Para cada atributo existente, sobrescreva o atributo local inicialmente vazio
     for atributo in article.attrib:
-        setattr( local_artigo, atributo, article.attrib[atributo].encode('utf-8') )
+        setattr( local_artigo, atributo, article.attrib[atributo].encode('utf-8').strip() )
 
     #Pegando cada uma das 5 tags dentro do corpo
     for body in article:
         for child in body:
             try:
-                setattr( local_artigo, child.tag, child.text.encode('utf-8') )
+                setattr( local_artigo, child.tag, child.text.encode('utf-8').strip() )
             except AttributeError:
                 setattr( local_artigo, child.tag, 'null' )
+            if child.tag == 'Autores':
+                local_artigo.Autores = ''
+                for grandchild in child:
+                    try:
+                        local_artigo.Autores += "<"+grandchild.tag.encode('utf-8')+"><"+grandchild.text.encode('utf-8')+"></"+grandchild.tag.encode('utf-8')+">"
+                    except AttributeError:
+                        local_artigo.Autores += "<"+grandchild.tag.encode('utf-8')+"></"+grandchild.tag.encode('utf-8')+">"
+                if local_artigo.Autores == '':
+                    local_artigo.Autores = 'null'
 
     #iterando sobre os atributos do objeto para construir a saida para o arquivo txt
     outputString=""
@@ -62,25 +86,3 @@ for article in root:
 
     #lembrando de ignorar o último tab
     print outputString[:-1]
-
-
-    #print ( local_artigo.id + '\t' +
-    #        local_artigo.artType + '\t' +
-    #        local_artigo.pubDate + '\t' +
-    #        local_artigo.artCategory + '\t' +
-    #        local_artigo.name + '\t' +
-    #        local_artigo.idOficio + '\t' +
-    #        local_artigo.pubName + '\t' +
-    #        local_artigo.artClass + '\t' +
-    #        local_artigo.artSection + '\t' +
-    #        local_artigo.artSize + '\t' +
-    #        local_artigo.artNotes + '\t' +
-    #        local_artigo.numberPage + '\t' +
-    #        local_artigo.pdfPage + '\t' +
-    #        local_artigo.editionNumber + '\t' +
-    #        local_artigo.Identifica + '\t' +
-    #        local_artigo.Data + '\t' +
-    #        local_artigo.Ementa + '\t' +
-    #        local_artigo.Titulo + '\t' +
-    #        local_artigo.SubTitulo + '\t' +
-    #        local_artigo.Texto)
