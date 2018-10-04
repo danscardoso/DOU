@@ -49,10 +49,6 @@ class Artigo:
     pubDate='null'          #data
     pubName='null'
     
-    #Informações extras
-    qtdParagrafos='null'
-    qtdTermos='null'
-
     #Tags filhas do artigo
     Autores='null'
     Data='null'
@@ -105,11 +101,6 @@ for article in root:
                         local_artigo.Autores += "<"+grandchild.tag.encode('utf-8')+"></"+grandchild.tag.encode('utf-8')+">"
                 if local_artigo.Autores == '':
                     local_artigo.Autores = 'null'
-
-            if child.tag == 'Texto':
-                local_artigo.qtdParagrafos = str(len( RegexSub('<p[^>]*', '', child.text.encode('utf-8')).split('</p>'))).strip()
-                local_artigo.qtdTermos = str(len( RegexFindAll('(NOMEAR)|(DISPENSAR)|(EXONERAR)|(DESLIGAR)|([^N]CEDER)|(DEMITIR)', NORM(child.text.encode('utf-8')).upper()))).strip()
-
 
     #iterando sobre os atributos do objeto para construir a saida para o arquivo txt
     outputString=""
