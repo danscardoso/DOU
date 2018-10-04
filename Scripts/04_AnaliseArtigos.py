@@ -45,30 +45,11 @@ class Artigo:
     main_orgao='null'
     texto='null'
 
-    #Atributos vindo do XML original
-    # artClass='null'
-    # artNotes='null'
-    # artSize='null'
-    # editionNumber='null'
-    # idOficio='null'
-    # idMateria='null'
-    # highlight='null'
-    # highlightPriority='null'
-    # highlightType='null'
-    # name='null'
-    # numberPage='null'
-    # pdfPage='null'
-    # pubName='null'
-    # Autores='null'
-    # Ementa='null'
-    # Identifica='null'
-    # SubTitulo='null'
-    # Titulo='null'
-
     #Informações novas
     qtdParagrafos='null'
     qtdTermos='null'
     interesse='null'
+    listaTermos='null'
 
 #recebe o nome do arquivo via CLI
 nome_arquivo = argv[1];
@@ -112,8 +93,26 @@ with open(nome_arquivo) as input_file:
 
         #Quantidade de termos
         a.qtdParagrafos = str(len(paragrafos)).strip()
-        a.qtdTermos = str(len( re.findall('(NOMEAR)|(DISPENSAR)|(EXONERAR)|(DESLIGAR)|([^N]CEDER)|(DEMITIR)', textoTrabalhado.upper()))).strip()
         
+        pesquisaTermos = re.findall('(NOMEAR)|(DISPENSAR)|(EXONERAR)|(DESLIGAR)|([^\w]CEDER)|(DEMITIR)', textoTrabalhado.upper())
+
+        if pesquisaTermos:
+            a.listaTermos=''
+
+            #não me pergunte por que mas o regex volta em grupos de matches
+            for grupo in pesquisaTermos:
+                for item in grupo:
+                    if item != '':
+                        a.listaTermos += str(re.sub( '\W', '', item)) + "," 
+
+            #ignorando a ultima virgula
+            a.listaTermos = a.listaTermos[:-1]
+
+        #quantidade de termos
+        a.qtdTermos = str(len( pesquisaTermos )).strip()
+        
+
+
         #Definindo se é de interesse ou não
         a.interesse = a.qtdTermos > 0
 

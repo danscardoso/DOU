@@ -3,20 +3,21 @@
 import re
 from sys import argv as CLI_input
 
-class objetoSaida:
+class Acao:
+
+    # Atributos vindo do artigo
     idArtigo='null'
     ato='null'
+    dataArtigo='null'
+    dataPublicacao='null'
+    mesAnoPub='null'
     orgao='null'
-    data='null'
     main_orgao='null'
-    mesAno='null'
-    verbo='null'
-    nome='null'
-    cargo='null'
-    linha='null'
+    texto='null'
     qtdParagrafos='null'
     qtdTermos='null'
-    texto='null'
+    interesse='null'
+
 
 def print_cabecalho_output():
     outputString = ''
@@ -57,7 +58,7 @@ nome_arquivo = CLI_input[1];
 termos = ['NOMEAR','DISPENSAR','EXONERAR','DESLIGAR',' CEDER','DEMITIR']
 
 #lista de atributos para saida
-temp = objetoSaida()
+temp = Acao()
 listaAttributos = [a for a in dir(temp) if not a.startswith('__') and not callable(getattr(temp,a))]
 
 #Print cabecalho
@@ -66,7 +67,7 @@ print_cabecalho_output()
 with open(nome_arquivo) as input_file:
 
     #cabecalho eh um caso a parte
-    cabecalho = input_file.readline().strip().split('\t')
+    cabecalho = input_file.readline().split('\t')
 
     #registro a registro
     for registro in input_file:
@@ -78,7 +79,7 @@ with open(nome_arquivo) as input_file:
         output.data          = registro[ cabecalho.index('pubDate') ]
         output.idArtigo      = registro[ cabecalho.index('id') ]
         output.orgao         = registro[ cabecalho.index('artCategory') ]
-        output.main_orgao    =  registro[ cabecalho.index('artSection') ]
+        output.main_orgao    = registro[ cabecalho.index('artSection') ]
         output.texto         = registro[ cabecalho.index('Texto') ]
         output.qtdParagrafos = registro[ cabecalho.index('qtdParagrafos') ]
 
