@@ -92,7 +92,7 @@ with open(nome_arquivo) as input_file:
         paragrafos = re.sub('<p[^>]*', '', textoTrabalhado).split('</p>')
 
         #Quantidade de termos
-        a.qtdParagrafos = str(len(paragrafos)).strip()
+        a.qtdParagrafos = str(len(paragrafos) -1).strip()
         
         pesquisaTermos = re.findall('(NOMEAR)|(DISPENSAR)|(EXONERAR)|(DESLIGAR)|([^\w]CEDER)|(DEMITIR)', textoTrabalhado.upper())
 
@@ -111,9 +111,7 @@ with open(nome_arquivo) as input_file:
         #quantidade de termos
         a.qtdTermos = str(len( pesquisaTermos )).strip()
         
-
-
         #Definindo se é de interesse ou não
-        a.interesse = a.qtdTermos > 0
+        a.interesse = int(a.qtdTermos) > 0
 
         print_registro( a )

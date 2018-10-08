@@ -8,16 +8,23 @@ class Acao:
     # Atributos vindo do artigo
     idArtigo='null'
     ato='null'
-    dataArtigo='null'
+    #dataArtigo='null'
     dataPublicacao='null'
     mesAnoPub='null'
     orgao='null'
     main_orgao='null'
-    texto='null'
+    #texto='null'
     qtdParagrafos='null'
     qtdTermos='null'
-    interesse='null'
+    #interesse='null'
+    #listaTermos='null'
 
+    #Variaveis locais da acao
+    preambulo='null'
+    verbo='null'
+    nome='null'
+    cargo='null'
+    textoAcao='null'
 
 def print_cabecalho_output():
     outputString = ''
@@ -51,11 +58,20 @@ def NORM(nome):
     nome=nome.replace('Ñ','N')
     return str(nome)
 
+def isnome(termo):
+
+    #Blacklist de termos que não podem
+    vet_black = ['SR.', 'SR', '-', 'CPF', 'SIAPE', 'CRP', 'DOU'] + termos
+
+    # Vai dar match de algo que não seja uma letra, aspas simple, dupla, traço ou ponto
+    # Daí inverte (se achar algo suspeito, retorna falso)
+    if re.search('^[^A-Z\'\-\.\,"]+$', termo):
+        print (termo + " reprovado pelo regex")
+        return False
+    return True
+
 #recebe o nome do arquivo via CLI
 nome_arquivo = CLI_input[1];
-
-#verbs used as flags to identify desirable information, terms of importance
-termos = ['NOMEAR','DISPENSAR','EXONERAR','DESLIGAR',' CEDER','DEMITIR']
 
 #lista de atributos para saida
 temp = Acao()
@@ -67,36 +83,83 @@ print_cabecalho_output()
 with open(nome_arquivo) as input_file:
 
     #cabecalho eh um caso a parte
-    cabecalho = input_file.readline().split('\t')
+    cabecalho = input_file.readline().strip().split('\t')
 
     #registro a registro
     for registro in input_file:
 
         registro = registro.split('\t')
 
-        output = objetoSaida()
-        output.ato           = registro[ cabecalho.index('artType') ]
-        output.data          = registro[ cabecalho.index('pubDate') ]
-        output.idArtigo      = registro[ cabecalho.index('id') ]
-        output.orgao         = registro[ cabecalho.index('artCategory') ]
-        output.main_orgao    = registro[ cabecalho.index('artSection') ]
-        output.texto         = registro[ cabecalho.index('Texto') ]
-        output.qtdParagrafos = registro[ cabecalho.index('qtdParagrafos') ]
-
-        #Mesano eh a data ignorando o dia
-        output.mesAno     = output.data[3:].replace('/','')
-
-        #Texto Trabalhado
-        textoTrabalhado = NORM(output.texto)
-
-        #Quebrando o texto em uma lista de paragrafos
-        paragrafos = re.sub('<p[^>]*', '', textoTrabalhado).split('</p>')
-
-        #Quantidade de termos
+        a = Acao()
+        a.idArtigo       = registro[ cabecalho.index('idArtigo') ]
+        a.ato            = registro[ cabecalho.index('ato') ]
+        a.dataPublicacao = registro[ cabecalho.index('dataPublicacao') ]
+        a.mesAnoPub      = registro[ cabecalho.index('mesAnoPub') ]
+        a.orgao          = registro[ cabecalho.index('orgao') ]
+        a.main_orgao     = registro[ cabecalho.index('main_orgao') ]
+        a.qtdParagrafos  = registro[ cabecalho.index('qtdParagrafos') ]
+        a.qtdTermos      = registro[ cabecalho.index('qtdTermos') ]
         
-        #output.verbo      = registro[ cabecalho.index('artCategory') ]
-        #output.nome       = registro[ cabecalho.index('artCategory') ]
-        #output.cargo      = registro[ cabecalho.index('artCategory') ]
-        #output.linha      = registro[ cabecalho.index('artCategory') ]
-    
-        print_registro( output )
+        textoTrabalhado = NORM(registro[ cabecalho.index('texto') ].strip())
+
+        #Lista de termos
+        listaTermos = registro[ cabecalho.index('listaTermos') ].split(",")
+
+        #Lista de verbos de interesse (em forma de regex)
+        termos = ['NOMEAR','DISPENSAR','EXONERAR','DESLIGAR','[^\w]CEDER','DEMITIR']
+        
+        #Quebrando o texto nos verbos de interesse
+        if int(a.qtdTermos):
+            
+            #Em um primeiro momento eh uma "partição" de uma parte
+            textoParticionado = [textoTrabalhado]
+
+            for termo in termos:
+                temp=[]
+                for pedaco in textoParticionado:
+                    temp += re.split(termo, pedaco, flags=re.IGNORECASE)
+                textoParticionado = temp
+
+            #Tiro o preambulo da lista de ações
+            a.preambulo = textoParticionado.pop(0)
+
+            #Se o preambulo ajudar, procura o orgao
+            if a.preambulo.find('class= titulo') != -1:
+                a.orgao = re.search("class= titulo >[^<]+", a.preambulo).group(0)[15:]
+
+            # Para cada açao restante
+            for index, acao in enumerate(textoParticionado):
+                a.textoAcao = listaTermos[index] + acao
+                a.verbo = listaTermos[index]
+
+                #busca nome
+                palavras = acao.split(' ')
+                for id, palavra in enumerate(palavras):
+
+                    # Se tiver 2 válidos em sequencia
+                    if isnome( palavras[id] ) and isnome( palavras[id+1] ):
+                        nome_ini = id
+                        break
+
+                for id,palavra in enumerate(palavras[nome_ini:]):
+                    if palavra.find(',') != -1:
+                        nome_fim = id+1
+                        break
+                    elif not isnome( palavra ):
+                        nome_fim = id
+                        break
+
+                a.nome = (' '.join(c for c in palavras[nome_ini:(nome_ini+nome_fim)])).replace(',','')
+
+                #cargo
+                if acao.find('compor o ') != -1 :
+                    a.cargo = re.search("compor o [^,.]+", acao).group(0)[9:]
+                elif acao.find('cargo de') != -1 :
+                    a.cargo = re.search("cargo de [^,.]+", acao).group(0)[9:]
+                elif acao.find('funcao de') != -1:
+                    a.cargo = re.search("funcao de [^,.]+", acao).group(0)[10:]
+
+                print_registro( a )
+        else:
+            print_registro( a )
+
