@@ -8,16 +8,11 @@ class Acao:
     # Atributos vindo do artigo
     idArtigo='null'
     ato='null'
-    #dataArtigo='null'
     dataPublicacao='null'
     mesAnoPub='null'
     orgao='null'
-    main_orgao='null'
-    #texto='null'
     qtdParagrafos='null'
     qtdTermos='null'
-    #interesse='null'
-    #listaTermos='null'
 
     #Variaveis locais da acao
     preambulo='null'
@@ -59,14 +54,13 @@ def NORM(nome):
     return str(nome)
 
 def isnome(termo):
-
     #Blacklist de termos que não podem
-    vet_black = ['SR.', 'SR', '-', 'CPF', 'SIAPE', 'CRP', 'DOU'] + termos
-
+    vet_black = ['SR.', 'SR', '-', 'CPF', 'SIAPE', 'CRP', 'DOU', 'CDES', 'MNPCT'] + termos
     # Vai dar match de algo que não seja uma letra, aspas simple, dupla, traço ou ponto
     # Daí inverte (se achar algo suspeito, retorna falso)
-    if re.search('^[^A-Z\'\-\.\,"]+$', termo):
-        print (termo + " reprovado pelo regex")
+    if re.search('[^A-Z\'\-\.\,"]', termo):
+        return False
+    if termo in vet_black:
         return False
     return True
 
@@ -96,11 +90,10 @@ with open(nome_arquivo) as input_file:
         a.dataPublicacao = registro[ cabecalho.index('dataPublicacao') ]
         a.mesAnoPub      = registro[ cabecalho.index('mesAnoPub') ]
         a.orgao          = registro[ cabecalho.index('orgao') ]
-        a.main_orgao     = registro[ cabecalho.index('main_orgao') ]
         a.qtdParagrafos  = registro[ cabecalho.index('qtdParagrafos') ]
         a.qtdTermos      = registro[ cabecalho.index('qtdTermos') ]
         
-        textoTrabalhado = NORM(registro[ cabecalho.index('texto') ].strip())
+        textoTrabalhado = NORM(registro[ cabecalho.index('texto') ].strip()).replace('>', '> ')
 
         #Lista de termos
         listaTermos = registro[ cabecalho.index('listaTermos') ].split(",")
@@ -125,7 +118,7 @@ with open(nome_arquivo) as input_file:
 
             #Se o preambulo ajudar, procura o orgao
             if a.preambulo.find('class= titulo') != -1:
-                a.orgao = re.search("class= titulo >[^<]+", a.preambulo).group(0)[15:]
+                a.orgao = re.search("class= titulo >[^<]+", a.preambulo).group(0)[16:]
 
             # Para cada açao restante
             for index, acao in enumerate(textoParticionado):
@@ -134,12 +127,17 @@ with open(nome_arquivo) as input_file:
 
                 #busca nome
                 palavras = acao.split(' ')
+
                 for id, palavra in enumerate(palavras):
 
                     # Se tiver 2 válidos em sequencia
-                    if isnome( palavras[id] ) and isnome( palavras[id+1] ):
+                    try:
+                        if isnome( palavras[id] ) and isnome( palavras[id+1] ):
+                            nome_ini = id
+                            break
+                    except IndexError:
                         nome_ini = id
-                        break
+
 
                 for id,palavra in enumerate(palavras[nome_ini:]):
                     if palavra.find(',') != -1:
@@ -150,14 +148,18 @@ with open(nome_arquivo) as input_file:
                         break
 
                 a.nome = (' '.join(c for c in palavras[nome_ini:(nome_ini+nome_fim)])).replace(',','')
+                a.nome = re.sub('<[^>]+>', '', a.nome)
 
                 #cargo
-                if acao.find('compor o ') != -1 :
+                if acao.find('compor o ') != -1 :        
                     a.cargo = re.search("compor o [^,.]+", acao).group(0)[9:]
                 elif acao.find('cargo de') != -1 :
                     a.cargo = re.search("cargo de [^,.]+", acao).group(0)[9:]
                 elif acao.find('funcao de') != -1:
                     a.cargo = re.search("funcao de [^,.]+", acao).group(0)[10:]
+                elif acao.find('membros do') != -1:
+                    a.cargo = re.search("membros do [^,.]+", acao).group(0)[11:]
+
 
                 print_registro( a )
         else:
