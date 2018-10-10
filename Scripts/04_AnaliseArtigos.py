@@ -2,6 +2,9 @@
 from sys import argv
 import re
 
+#TODO: QUEBRAR ARTIGOS COM MAIS DE UM OBJETO, TEXTO, ASSINA E MAIS TEXTO
+# EM ARTIGOS QUE TERMINAM NA ASSINATURA (CASO ELA EXISTA)
+
 def print_cabecalho_output():
     outputString = ''
     for atributo in listaAttributos:

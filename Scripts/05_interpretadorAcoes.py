@@ -3,6 +3,11 @@
 import re
 from sys import argv as CLI_input
 
+# TODOS:
+#   "FICANDO EXONERADO"
+#   IDENTIFICAR MULTIPLOS INDIVIDUOS AFETADOS PELA MESMA AÇÃO
+#   RETIFICAÇÃO MAL IDENTIFICADA
+
 class Acao:
 
     # Atributos vindo do artigo
@@ -17,8 +22,8 @@ class Acao:
     #Variaveis locais da acao
     preambulo='null'
     verbo='null'
-    nome='null'
-    cargo='null'
+    nome=''
+    cargo=''
     textoAcao='null'
 
 def print_cabecalho_output():
@@ -93,8 +98,8 @@ with open(nome_arquivo) as input_file:
         a.qtdParagrafos  = registro[ cabecalho.index('qtdParagrafos') ]
         a.qtdTermos      = registro[ cabecalho.index('qtdTermos') ]
         
-        textoTrabalhado = NORM(registro[ cabecalho.index('texto') ].strip()).replace('>', '> ')
-
+        textoTrabalhado = NORM(registro[ cabecalho.index('texto') ].strip()).replace('>', '> ').replace('<', ' <')
+        
         #Lista de termos
         listaTermos = registro[ cabecalho.index('listaTermos') ].split(",")
 
@@ -140,7 +145,7 @@ with open(nome_arquivo) as input_file:
 
 
                 for id,palavra in enumerate(palavras[nome_ini:]):
-                    if palavra.find(',') != -1:
+                    if palavra.find(',') != -1 and palavra.find(':') != -1 and palavra.find(';') != -1:
                         nome_fim = id+1
                         break
                     elif not isnome( palavra ):
@@ -152,14 +157,15 @@ with open(nome_arquivo) as input_file:
 
                 #cargo
                 if acao.find('compor o ') != -1 :        
-                    a.cargo = re.search("compor o [^,.]+", acao).group(0)[9:]
-                elif acao.find('cargo de') != -1 :
-                    a.cargo = re.search("cargo de [^,.]+", acao).group(0)[9:]
-                elif acao.find('funcao de') != -1:
-                    a.cargo = re.search("funcao de [^,.]+", acao).group(0)[10:]
-                elif acao.find('membros do') != -1:
-                    a.cargo = re.search("membros do [^,.]+", acao).group(0)[11:]
-
+                    a.cargo = re.search("compor o [^,.;:]+", acao).group(0)[9:]
+                elif acao.find('cargo de ') != -1 :
+                    a.cargo = re.search("cargo de [^,.;:]+", acao).group(0)[9:]
+                elif acao.find('funcao de ') != -1:
+                    a.cargo = re.search("funcao de [^,.;:]+", acao).group(0)[10:]
+                elif acao.find('membros do ') != -1:
+                    a.cargo = re.search("membros do [^,.;:]+", acao).group(0)[11:]
+                else:
+                    a.cargo = ''
 
                 print_registro( a )
         else:
