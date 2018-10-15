@@ -1,6 +1,6 @@
 #! /bin/bash
 
-#
+# Arquivos usados pelo programa
 temporary_file="__temp.txt"
 temporary_file2="__temp2.txt"
 log_file="__log.txt"
@@ -13,7 +13,7 @@ fi
 #Eles separam os dados em paginas para cada ano
 for ano in {2002..2018}; do
 
-	# Caso separado para a url de 2017
+	# Caso diferente para a url de 2017
 	if [ $ano -eq '2017' ];then
 		wget "http://dados.gov.br/dataset/diario-oficial-da-uniao" --timeout=10 -t0 -O $temporary_file
 	else
@@ -29,22 +29,20 @@ for ano in {2002..2018}; do
 	# cada match do grep eh um recurso a ser baixado
 	for recurso in $( grep -o 'a class="heading" href="[^"]*' $temporary_file | grep -o "dataset.*" ); do
 
-		#Logando qual URL eu estou tentando buscar
+		#Pegando e logando a URL que direciona para o recurso final
 		echo "[ano="$ano"] [URL galho] http://dados.gov.br/"$recurso >> $log_file
-		
 		wget "http://dados.gov.br/"$recurso --timeout=10 -t0 -O $temporary_file2
 
+		#Descobrindo a URL do recurso final
 		saida=$( grep -o "muted ellipsis\">[^>]*" $temporary_file2 | grep -o 'href="[^"]*' | grep -o "http.*" )
 
+		#Pegando o nome do arquivo zip para nomear o arquivo de saida
 		nome_saida=$( echo $saida | grep -E -o -i "/[0-9A-Z\.]+/[a-z0-9\-]+$" | grep -E -o -i "^/[a-z0-9]+" | grep -o -i -E "[a-z0-9]+")
 
-		#Logando qual recurso eu estou tentado buscar:
-		echo "[ano="$ano"] [URL folha] ["$nome_saida"] "$saida >> $log_file
-
+		#Pegando e logando qual recurso eu estou tentado buscar:
 		wget $saida --timeout=10 -t0 -O "../dados_originais/"$nome_saida".zip"
-
+		echo "[ano="$ano"] [URL folha] ["$nome_saida"] "$saida >> $log_file
 	done
 done
 
 #rm $temporary_file $temporary_file2
-
