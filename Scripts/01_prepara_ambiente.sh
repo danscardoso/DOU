@@ -26,6 +26,6 @@ for file in $(find "$source_file_dir" -name "*zip"); do
 	unzip -q "$file" -d "$unzipped_file_dir""/""$folder"
 done
 
-"./"$caminho_relativo"02_empacotador.sh" $unzipped_file_dir "../empacotados.xml"
+"./"$caminho_relativo"02_empacotador.sh" $unzipped_file_dir "empacotados.xml"
 
 echo "TERMINEI DE PREPARAR O AMBIENTE" $(date +"%T")
