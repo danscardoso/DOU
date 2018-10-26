@@ -59,14 +59,27 @@ def NORM(nome):
     return str(nome)
 
 def isnome(termo):
+    
     #Blacklist de termos que não podem
     vet_black = ['SR.', 'SR', '-', 'CPF', 'SIAPE', 'CRP', 'DOU', 'CDES', 'MNPCT'] + termos
-    # Vai dar match de algo que não seja uma letra, aspas simple, dupla, traço ou ponto
+
+    # Vai dar match de algo que não seja uma letra, aspas simple, dupla, traço ou ponto ou virgula
     # Daí inverte (se achar algo suspeito, retorna falso)
-    if re.search('[^A-Z\'\-\.\,"]', termo):
+    if re.search('[^A-Z\'\"\-\.\,"]', termo):
         return False
+
+    # Se tiver um ponto ou virgula não sendo no final da palavra
+    if re.search('[\,\.].+$', termo):
+        return False
+
+    # Se tiver poucas letras, proibe
+    if len ( re.findall("[A-Z]", textoTrabalhado) ) < 2:
+        return False
+
+    # Se o resultado pertencer à blacklist, proibe
     if termo in vet_black:
         return False
+
     return True
 
 #recebe o nome do arquivo via CLI
@@ -100,6 +113,11 @@ with open(nome_arquivo) as input_file:
         
         textoTrabalhado = NORM(registro[ cabecalho.index('texto') ].strip()).replace('>', '> ').replace('<', ' <')
         
+        # Aqui, vamos botar para caixa baixa os textos dos campi para não confundir nome
+        for f in re.findall("CAMPUS [A-Z ]+", textoTrabalhado):
+            textoTrabalhado = textoTrabalhado.replace(f, f.lower())
+
+
         #Lista de termos
         listaTermos = registro[ cabecalho.index('listaTermos') ].split(",")
 
@@ -108,7 +126,7 @@ with open(nome_arquivo) as input_file:
         
         #Quebrando o texto nos verbos de interesse
         if int(a.qtdTermos):
-            
+
             #Em um primeiro momento eh uma "partição" de uma parte
             textoParticionado = [textoTrabalhado]
 
@@ -124,6 +142,7 @@ with open(nome_arquivo) as input_file:
             #Se o preambulo ajudar, procura o orgao
             if a.preambulo.find('class= titulo') != -1:
                 a.orgao = re.search("class= titulo >[^<]+", a.preambulo).group(0)[16:]
+
 
             # Para cada açao restante
             for index, acao in enumerate(textoParticionado):

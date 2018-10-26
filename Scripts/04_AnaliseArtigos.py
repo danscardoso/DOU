@@ -47,12 +47,12 @@ class Artigo:
     texto='null'
 
     #Informações editadas para "melhorar" um pouco
-    dataArtigo='null'
+    dataArtigo='null'           
     referencia='null'           # link para acessar o documento original no site da imprensa
+    orgaoCodigo='null'          # tentando transformar o codigo em um órgão que idealmente converse com SIAPE e SIORG
 
 
     #Informações que vem do xml que eu ignorei e não passei adiante
-    ### artClass='null'
     ### artNotes='null'
     ### artSize='null'
     ### editionNumber='null'
@@ -66,7 +66,6 @@ class Artigo:
     ### numberPage='null'
     ### pubName='null'
     ### Autores='null'
-    ### Data='null'
     ### Ementa='null'
     ### Identifica='null'
     ### SubTitulo='null'
@@ -77,7 +76,6 @@ class Artigo:
     qtdTermos='null'            # quantidade de termos de interesse (aqueles verbos)
     interesse='null'            # binário, avalia se qtdTermos > 0
     listaTermos='null'          # os termos de interesse separados por ,
-    orgaoCodigo='null'          # 
     mesAnoPub='null'            # mesAno da publicação para facilitar paginação
 
 
